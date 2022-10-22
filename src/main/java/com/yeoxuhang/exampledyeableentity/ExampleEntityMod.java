@@ -2,7 +2,10 @@ package com.yeoxuhang.exampledyeableentity;
 
 import com.yeoxuhang.exampledyeableentity.entity.ExampleDyeableEntity;
 import com.yeoxuhang.exampledyeableentity.entity.ExampleEntityModel;
-import com.yeoxuhang.exampledyeableentity.entity.ExampleEntityRenderer;
+import com.yeoxuhang.exampledyeableentity.entity.ExampleDyeableEntityRenderer;
+import com.yeoxuhang.exampledyeableentity.examplerightclickentitychangetexture.ExampleClickEntityModel;
+import com.yeoxuhang.exampledyeableentity.examplerightclickentitychangetexture.ExampleRightClickChangeTextureEntity;
+import com.yeoxuhang.exampledyeableentity.examplerightclickentitychangetexture.ExampleRightClickChangeTextureEntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -13,15 +16,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(ExampleDyeableEntityMod.MOD_ID)
-public class ExampleDyeableEntityMod {
+@Mod(ExampleEntityMod.MOD_ID)
+public class ExampleEntityMod {
 
-    public static final String MOD_ID = "exampledyeableentity";
+    public static final String MOD_ID = "exampleentitymod";
 
-    public ExampleDyeableEntityMod() {
+    public ExampleEntityMod() {
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ExampleDyeableEntityModEntityTypes.register(eventBus);
-        ExampleDyeableEntityModItems.register(eventBus);
+        ExampleEntityModEntityTypes.register(eventBus);
+        ExampleEntityModItems.register(eventBus);
         MinecraftForge.EVENT_BUS.register(this);
         eventBus.addListener(this::clientSetup);
         eventBus.addListener(this::entityAttributeEvent);
@@ -29,13 +32,16 @@ public class ExampleDyeableEntityMod {
     }
 
     private void clientSetup(final FMLClientSetupEvent event) {
-        EntityRenderers.register(ExampleDyeableEntityModEntityTypes.EXAMPLE_DYEABLE_ENTITY.get(), ExampleEntityRenderer::new);
+        EntityRenderers.register(ExampleEntityModEntityTypes.EXAMPLE_DYEABLE_ENTITY.get(), ExampleDyeableEntityRenderer::new);
+        EntityRenderers.register(ExampleEntityModEntityTypes.EXAMPLE_CLICK_ENTITY.get(), ExampleRightClickChangeTextureEntityRenderer::new);
     }
     private void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(ExampleEntityModel.LAYER_LOCATION, ExampleEntityModel::createBodyLayer);
+        event.registerLayerDefinition(ExampleClickEntityModel.LAYER_LOCATION, ExampleClickEntityModel::createBodyLayer);
     }
 
     private void entityAttributeEvent(EntityAttributeCreationEvent event) {
-        event.put(ExampleDyeableEntityModEntityTypes.EXAMPLE_DYEABLE_ENTITY.get(), ExampleDyeableEntity.setAttributes());
+        event.put(ExampleEntityModEntityTypes.EXAMPLE_DYEABLE_ENTITY.get(), ExampleDyeableEntity.setAttributes());
+        event.put(ExampleEntityModEntityTypes.EXAMPLE_CLICK_ENTITY.get(), ExampleDyeableEntity.setAttributes());
     }
 }
