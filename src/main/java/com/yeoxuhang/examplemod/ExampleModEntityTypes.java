@@ -12,7 +12,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class ExampleModEntityTypes {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
-            DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, ExampleMod.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ENTITIES, ExampleMod.MOD_ID);
 
     public static final RegistryObject<EntityType<ExampleDyeableEntity>> EXAMPLE_DYEABLE_ENTITY = ENTITY_TYPES.register("example_dyeable_entity",
             () -> EntityType.Builder.of(ExampleDyeableEntity::new, MobCategory.MONSTER)
