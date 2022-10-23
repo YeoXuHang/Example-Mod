@@ -1,4 +1,4 @@
-package com.yeoxuhang.exampledyeableentity.entity;
+package com.yeoxuhang.examplemod.exampledeyeableentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;

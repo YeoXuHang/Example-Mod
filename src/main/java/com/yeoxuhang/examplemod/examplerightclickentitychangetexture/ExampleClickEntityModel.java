@@ -1,8 +1,7 @@
-package com.yeoxuhang.exampledyeableentity.examplerightclickentitychangetexture;
+package com.yeoxuhang.examplemod.examplerightclickentitychangetexture;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
-import com.yeoxuhang.exampledyeableentity.entity.ExampleDyeableEntity;
 import net.minecraft.client.model.EntityModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.ModelPart;

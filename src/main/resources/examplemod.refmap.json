@@ -1,0 +1,14 @@
+{
+  "mappings": {
+    "com/yeoxuhang/examplemod/examplebiome/mixin/OverworldBiomeBuilderMixin": {
+      "addUndergroundBiomes": "Lnet/minecraft/world/level/biome/OverworldBiomeBuilder;m_187226_(Ljava/util/function/Consumer;)V"
+    }
+  },
+  "data": {
+    "searge": {
+      "com/yeoxuhang/examplemod/examplebiome/mixin/OverworldBiomeBuilderMixin": {
+        "addUndergroundBiomes": "Lnet/minecraft/world/level/biome/OverworldBiomeBuilder;m_187226_(Ljava/util/function/Consumer;)V"
+      }
+    }
+  }
+}

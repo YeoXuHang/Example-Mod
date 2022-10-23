@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "package": "com.yeoxuhang.examplemod.examplebiome.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "minVersion": "0.8",
+  "refmap": "examplemod.refmap.json",
+  "mixins": [
+    "OverworldBiomeBuilderMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Specification-Title: ExampleMod
+Specification-Vendor: YeoXuHang
+Specification-Version: 1
+Implementation-Title: ExampleMod
+Implementation-Version: 1.0.0
+Implementation-Vendor: YeoXuHang
+Implementation-Timestamp: 2022-08-11T08:28:40+0800
+MixinConfigs: examplemod.mixins.json

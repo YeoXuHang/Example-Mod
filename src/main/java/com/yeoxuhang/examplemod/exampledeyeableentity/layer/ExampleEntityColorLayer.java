@@ -1,16 +1,16 @@
-package com.yeoxuhang.exampledyeableentity.entity.layer;
+package com.yeoxuhang.examplemod.exampledeyeableentity.layer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.yeoxuhang.exampledyeableentity.ExampleEntityMod;
-import com.yeoxuhang.exampledyeableentity.entity.ExampleDyeableEntity;
-import com.yeoxuhang.exampledyeableentity.entity.ExampleEntityModel;
+import com.yeoxuhang.examplemod.ExampleMod;
+import com.yeoxuhang.examplemod.exampledeyeableentity.ExampleDyeableEntity;
+import com.yeoxuhang.examplemod.exampledeyeableentity.ExampleEntityModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.RenderLayerParent;
 import net.minecraft.client.renderer.entity.layers.RenderLayer;
 import net.minecraft.resources.ResourceLocation;
 
 public class ExampleEntityColorLayer extends RenderLayer<ExampleDyeableEntity, ExampleEntityModel<ExampleDyeableEntity>> {
-    private static final ResourceLocation WOLF_COLLAR_LOCATION = new ResourceLocation(ExampleEntityMod.MOD_ID ,"textures/entity/example_entity.png");
+    private static final ResourceLocation WOLF_COLLAR_LOCATION = new ResourceLocation(ExampleMod.MOD_ID ,"textures/entity/example_entity.png");
 
     public ExampleEntityColorLayer(RenderLayerParent<ExampleDyeableEntity, ExampleEntityModel<ExampleDyeableEntity>> p_117707_) {
         super(p_117707_);

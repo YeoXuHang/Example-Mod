@@ -1,4 +1,4 @@
-package com.yeoxuhang.exampledyeableentity.examplerightclickentitychangetexture;
+package com.yeoxuhang.examplemod.exampledeyeableentity;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -6,22 +6,19 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.PathfinderMob;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 
 
-public class ExampleRightClickChangeTextureEntity extends PathfinderMob {
+public class ExampleDyeableEntity extends PathfinderMob {
 
-    private static final EntityDataAccessor<Boolean> CLICKED = SynchedEntityData.defineId(ExampleRightClickChangeTextureEntity.class, EntityDataSerializers.BOOLEAN);
-    public ExampleRightClickChangeTextureEntity(EntityType<? extends PathfinderMob> type, Level level) {
+    private static final EntityDataAccessor<Integer> DATA_COLOR = SynchedEntityData.defineId(ExampleDyeableEntity.class, EntityDataSerializers.INT);
+    public ExampleDyeableEntity(EntityType<? extends PathfinderMob> type, Level level) {
         super(type, level);
          xpReward = 0;
          setNoAi(false);
@@ -48,42 +45,39 @@ public class ExampleRightClickChangeTextureEntity extends PathfinderMob {
 
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(CLICKED, false);
+        this.entityData.define(DATA_COLOR, DyeColor.LIGHT_BLUE.getId());
     }
     public void addAdditionalSaveData(CompoundTag tag) {
         super.addAdditionalSaveData(tag);
-        this.entityData.set(CLICKED, this.isClicked());
+        tag.putByte("Color", (byte)this.getCollarColor().getId());
     }
 
     public void readAdditionalSaveData(CompoundTag tag) {
         super.readAdditionalSaveData(tag);
-
+        if (tag.contains("Color", 99)) {
+            this.setColor(DyeColor.byId(tag.getInt("Color")));
+        }
     }
 
     public InteractionResult mobInteract(Player player, InteractionHand hand) {
         ItemStack itemstack = player.getItemInHand(hand);
-        if (!this.isClicked() && itemstack.is(Items.DIAMOND)) {
-            this.setClicked(true);
+        Item item = itemstack.getItem();
+        DyeColor dyecolor = ((DyeItem) item).getDyeColor();
+        if (dyecolor != this.getCollarColor()) {
+            this.setColor(dyecolor);
             if (!player.getAbilities().instabuild) {
                 itemstack.shrink(1);
             }
 
-            return InteractionResult.SUCCESS;
-        }
-        if (this.isClicked() && itemstack.is(Items.NETHERITE_INGOT)) {
-            this.setClicked(false);
-            if (!player.getAbilities().instabuild) {
-                itemstack.shrink(1);
-            }
             return InteractionResult.SUCCESS;
         }
             return super.mobInteract(player, hand);
         }
 
-    public Boolean isClicked() {
-        return this.entityData.get(CLICKED);
+    public DyeColor getCollarColor() {
+        return DyeColor.byId(this.entityData.get(DATA_COLOR));
     }
-    public void setClicked(boolean id) {
-        this.entityData.set(CLICKED, id);
+    public void setColor(DyeColor id) {
+        this.entityData.set(DATA_COLOR, id.getId());
     }
 }
